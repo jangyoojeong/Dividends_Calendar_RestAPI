@@ -28,5 +28,11 @@ public class Finance_InfoServiceImpl implements Finance_InfoService{
 	public List<Finance_InfoVO> Finance_InfoList() throws ClassNotFoundException, SQLException {
 		return Finance_InfoDAO.Finance_InfoList();
 	}
+
+	@Override
+	public List<String> Alarm_FinanceList(String date) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return Finance_InfoDAO.Alarm_FinanceList(date);
+	}
 	
 }
