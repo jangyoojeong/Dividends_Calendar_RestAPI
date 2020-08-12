@@ -1,6 +1,7 @@
 package com.jurini.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.jurini.finance_info.service.Finance_InfoService;
 import com.jurini.finance_info.vo.Finance_InfoVO;
@@ -24,12 +27,9 @@ public class Finance_InfoController {
     private Finance_InfoService finance_infoService;
     
     @RequestMapping(value ="goTestPage.do" , method = RequestMethod.GET)
-    public String goTestPage(Finance_InfoVO vo1, Model model) throws ClassNotFoundException, SQLException{
+    public @ResponseBody List<Finance_InfoVO> goTestPage() throws ClassNotFoundException, SQLException{
           
-    	model.addAttribute("mFinance_ino", finance_infoService.Finance_InfoOneData(vo1));
-          
-         
-          return "DBtest";
+          return finance_infoService.Finance_InfoList();
     }
 
 

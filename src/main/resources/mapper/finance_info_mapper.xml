@@ -3,9 +3,10 @@
 
 <mapper namespace="mybatis.sql.finance_info_mapper">
 
-	<select id = "Finance_InfoOneData" resultType = "Finance_InfoVO" parameterType = "Finance_InfoVO">		
+	<select id = "Finance_InfoList"  resultType="Finance_InfoVO" >		
 		SELECT *
 		FROM finance_info
+		LIMIT 100
 	</select>
 </mapper>
  		

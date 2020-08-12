@@ -14,13 +14,13 @@ public class NotiScheduler {
 	
 	private static final String SERVER_KEY = "AAAAlleqw9I:APA91bE6D6DbekJ19oCc88flI4Z9kh4Mu3X7sOvUFWrVHYnaSIU25t-UXimeX2COKGQXo4ywdYKG1Yc9__ncGLcAk3xd2aniW0w-fPZmQYP0MqY3XNuTav_Xm61U__3Q2t357sN2aAxk";
 
-//	@Scheduled(cron="0 0 22 * * *") // ¹Ì±¹ ¿ÀÀü 9½Ã = ÇÑ±¹ ¿ÀÈÄ 10½Ã
-	@Scheduled(cron="0 * * * * *") // Å×½ºÆ®
+//	@Scheduled(cron="0 0 22 * * *") // ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ 9ï¿½ï¿½ = ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ 10ï¿½ï¿½
+	@Scheduled(cron="0 * * * * *") // ï¿½×½ï¿½Æ®
     public void scheduleRun() {
 		
-		System.out.println("Çª½Ã ¾Ë¸²~!!");
+		System.out.println("Çªï¿½ï¿½ ï¿½Ë¸ï¿½~!!");
 		// To-Do :
-		// ¾Ë¸²ÀÌ ÇÊ¿äÇÑ µ¥ÀÌÅÍ Á¶È¸
+		// ï¿½Ë¸ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 		try {
 			URL url = new URL("https://fcm.googleapis.com/fcm/send");
 	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -35,12 +35,12 @@ public class NotiScheduler {
 	
 	        JSONObject jsonData = new JSONObject();
 	        JSONObject notiData = new JSONObject();
-	        // Å×½ºÆ® ÆÄÀÌ¾îº£ÀÌ½º ÅäÅ«
-	        // ¿©·¯ ÀÎ¿ø¿¡°Ô Àü¼ÛÇÒ ¶§´Â registration_ids ·Î ¹è¿­·Î ¹­¾î º¸³»¾ßµÊ.
+	        // ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½Ì¾îº£ï¿½Ì½ï¿½ ï¿½ï¿½Å«
+	        // ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ registration_ids ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ßµï¿½.
 	        jsonData.put("to", "fhXZ0WW5RhSnmXtXMgL_vx:APA91bEonEcMCplCLMJOiJ_hS0GTQ8sLLKqp-MHwkm1oo0FM9ix7NXJJONLTa38ne7xUQ_D-lIwxcIucqxZnBxGyMFhdDbG5x-mQgJx6NuH7we8quVz65Qbo89mOxCg-uFtXc9KOlc4K");
 	        jsonData.put("priority", "high");
-	        notiData.put("title", "ÁÖ¸°ÀÌ Å×½ºÆ®");
-	        notiData.put("body", "ÁÖ¸°ÀÌ ¹è´ç¶ôÀÏÀ» È®ÀÎÇØÁÖ¼¼¿ä.");
+	        notiData.put("title", "ï¿½Ö¸ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®");
+	        notiData.put("body", "ï¿½Ö¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 	        jsonData.put("notification", notiData);
 
             OutputStream os = conn.getOutputStream();
@@ -66,7 +66,7 @@ public class NotiScheduler {
 //            int succ = (Integer) jsonObj.get("success");
 //            int fail = (Integer) jsonObj.get("failure");
             
-            // To-Do : ¼º°ø ½ÇÆÐ¿¡ µû¸¥ Ãß°¡ ´ëÀÀ?
+            // To-Do : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ð¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½?
 
         } catch (Exception e) {
             e.printStackTrace();

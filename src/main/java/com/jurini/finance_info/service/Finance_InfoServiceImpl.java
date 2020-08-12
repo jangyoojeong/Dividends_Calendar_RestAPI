@@ -1,6 +1,7 @@
 package com.jurini.finance_info.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,9 @@ public class Finance_InfoServiceImpl implements Finance_InfoService{
 		return Finance_InfoDAO.Finance_InfoOneData(vo1);
 	}
 
-	
+	@Override
+	public List<Finance_InfoVO> Finance_InfoList() throws ClassNotFoundException, SQLException {
+		return Finance_InfoDAO.Finance_InfoList();
+	}
 	
 }
