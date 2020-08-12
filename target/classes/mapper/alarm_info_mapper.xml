@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="mybatis.sql.alarm_info_mapper">
+
+	<select id = "Push_List"  resultType="java.lang.String" >		
+		SELECT client_id
+		FROM alarm_info, client_info
+		WHERE alarm_data = #{symbol} and alarm = 1;
+	</select>
+</mapper>
