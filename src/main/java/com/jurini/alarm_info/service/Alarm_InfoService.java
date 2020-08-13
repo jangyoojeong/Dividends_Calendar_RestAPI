@@ -5,7 +5,7 @@ import java.util.List;
 import com.jurini.alarm_info.vo.Alarm_InfoVO;
 
 public interface Alarm_InfoService {
-	public List<Alarm_InfoVO> Alarm_InfoList (String date);
+	public List<Alarm_InfoVO> Alarm_InfoList ();
 	
 	public int insertAlarm_Data(Alarm_InfoVO alarm_InfoVO);
 

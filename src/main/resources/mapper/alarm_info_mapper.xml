@@ -3,9 +3,31 @@
 
 <mapper namespace="mybatis.sql.alarm_info_mapper">
 
-	<select id = "Push_List"  resultType="java.lang.String" >		
+    <select id = "Alarm_InfoList"  resultType="com.jurini.alarm_info.vo.Alarm_InfoVO" >		
+		SELECT *
+		FROM alarm_info
+	</select>
+	
+	<insert id="insertAlarm_Data" parameterType="com.jurini.alarm_info.vo.Alarm_InfoVO">
+	    INSERT INTO alarm_info (client_id, alarm_data, have_dividends)
+	    VALUES (#{client_id}, #{alarm_data}, #{have_dividends})
+	</insert>
+	
+	<update id="updateAlarm_Data" parameterType="com.jurini.alarm_info.vo.Alarm_InfoVO">
+	    UPDATE alarm_info
+	    SET  have_dividends = #{have_dividends}
+	    WHERE client_id = #{client_id} and alarm_data = #{alarm_data}
+	</update>
+	
+	<delete id="deleteAlarm_Data" parameterType="com.jurini.alarm_info.vo.Alarm_InfoVO">
+	    DELETE FROM alarm_info
+	    WHERE client_id = #{client_id} and alarm_data = #{alarm_data}
+	</delete>
+	
+	<select id = "Push_List"  resultType="String" >		
 		SELECT client_id
 		FROM alarm_info, client_info
 		WHERE alarm_data = #{symbol} and alarm = 1;
 	</select>
+	
 </mapper>

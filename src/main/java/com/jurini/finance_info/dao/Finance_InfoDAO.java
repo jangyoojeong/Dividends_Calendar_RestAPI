@@ -15,17 +15,19 @@ public class Finance_InfoDAO {
 	@Autowired
 	private SqlSession SqlSession;
 	
-	public Finance_InfoVO Finance_InfoOneData (Finance_InfoVO vo1) {
-		return SqlSession.selectOne("mybatis.sql.finance_info_mapper.Finance_InfoOneData", vo1);
-
+	public Finance_InfoVO Finance_InfoOneData (String symbol) {
+		return SqlSession.selectOne("mybatis.sql.finance_info_mapper.Finance_InfoOneData", symbol);
 	}
 	
 	public List<Finance_InfoVO> Finance_InfoList (){
 		return SqlSession.selectList("mybatis.sql.finance_info_mapper.Finance_InfoList");
 	}
 
-	public List<String> Alarm_FinanceList(String date) {
-		return SqlSession.selectList("mybatis.sql.finance_info_mapper.Alarm_FinanceList", date);
+	public List<String> Payment_Alarm_FinanceList(String date) {
+		return SqlSession.selectList("mybatis.sql.finance_info_mapper.Payment_Alarm_FinanceList", date);
 	}
 
+	public List<String> Dividends_Alarm_FinanceList(String date) {
+		return SqlSession.selectList("mybatis.sql.finance_info_mapper.Dividends_Alarm_FinanceList", date);
+	}
 }

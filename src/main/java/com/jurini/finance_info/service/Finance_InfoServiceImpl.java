@@ -18,21 +18,27 @@ public class Finance_InfoServiceImpl implements Finance_InfoService{
  
 
 	@Override
-	public Finance_InfoVO Finance_InfoOneData(Finance_InfoVO vo1) throws ClassNotFoundException, SQLException {
+	public Finance_InfoVO Finance_InfoOneData(String symbol) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		
-		return Finance_InfoDAO.Finance_InfoOneData(vo1);
+		return Finance_InfoDAO.Finance_InfoOneData(symbol);
 	}
 
 	@Override
 	public List<Finance_InfoVO> Finance_InfoList() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
 		return Finance_InfoDAO.Finance_InfoList();
 	}
 
 	@Override
-	public List<String> Alarm_FinanceList(String date) throws ClassNotFoundException, SQLException {
+	public List<String> Payment_Alarm_FinanceList(String date) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		return Finance_InfoDAO.Alarm_FinanceList(date);
+		return Finance_InfoDAO.Payment_Alarm_FinanceList(date);
+	}
+
+	@Override
+	public List<String> Dividends_Alarm_FinanceList(String date) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return Finance_InfoDAO.Dividends_Alarm_FinanceList(date);
 	}
 	
 }

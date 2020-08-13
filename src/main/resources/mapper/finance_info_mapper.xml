@@ -3,16 +3,22 @@
 
 <mapper namespace="mybatis.sql.finance_info_mapper">
 
-	<select id = "Finance_InfoList"  resultType="Finance_InfoVO" >		
+	<select id = "Finance_InfoList"  resultType="com.jurini.finance_info.vo.Finance_InfoVO" >		
 		SELECT *
 		FROM finance_info
 		LIMIT 100
 	</select>
 	
-	<select id = "Alarm_FinanceList"  resultType="java.lang.String"  parameterType="java.lang.String">		
+	<select id = "Payment_Alarm_FinanceList"  resultType="java.lang.String"  parameterType="java.lang.String">		
 		SELECT symbol
 		FROM finance_info
 		WHERE payment_date = #{date}
+	</select>
+	
+	<select id = "Dividends_Alarm_FinanceList"  resultType="java.lang.String"  parameterType="java.lang.String">		
+		SELECT symbol
+		FROM finance_info
+		WHERE dividends_date = #{date}
 	</select>
 </mapper>
  		
