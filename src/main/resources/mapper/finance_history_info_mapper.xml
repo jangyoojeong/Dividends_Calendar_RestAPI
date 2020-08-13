@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="mybatis.sql.finance_history_info_mapper">
+
+	<select id = "Finance_History_InfoList"  resultType="com.jurini.finance_history_info.vo.Finance_History_InfoVO" parameterType="String" >		
+		SELECT *
+		FROM finance_history_info
+		WHERE symbol = #{symbol}
+	</select>
+	
+	<insert id="insertFinance_History_Data" parameterType="com.jurini.finance_history_info.vo.Finance_History_InfoVO">
+	    INSERT INTO finance_history_info (symbol, dividends_date, dividends)
+	    VALUES (#{symbol}, #{dividends_date}, #{dividends})
+	</insert>
+	
+	<update id="updateFinance_History_Data" parameterType="com.jurini.finance_history_info.vo.Finance_History_InfoVO">
+	    UPDATE finance_history_info
+	    SET  dividends = #{dividends}
+	    WHERE symbol = #{symbol} and dividends_date = #{dividends_date}
+	</update>
+	
+	<delete id="deleteFinance_History_Data" parameterType="com.jurini.finance_history_info.vo.Finance_History_InfoVO">
+	    DELETE FROM finance_history_info
+	    WHERE symbol = #{symbol} and dividends_date = #{dividends_date}
+	</delete>
+</mapper>

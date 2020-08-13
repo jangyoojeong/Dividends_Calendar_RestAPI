@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="mybatis.sql.client_info_mapper">
+
+	<select id = "Client_InfoList"  resultType="com.jurini.client_info.vo.Client_InfoVO" >		
+		SELECT *
+		FROM client_info
+	</select>
+	
+	<insert id="insertClient_Data" parameterType="com.jurini.client_info.vo.Client_InfoVO">
+	    INSERT INTO client_info (firebase_token, alarm)
+	    VALUES (#{firebase_token}, #{alarm})
+	</insert>
+	
+	<update id="updateClient_Data" parameterType="com.jurini.client_info.vo.Client_InfoVO">
+	    UPDATE client_info
+	    SET  alarm = #{alarm}
+	    WHERE firebase_token = #{firebase_token}
+	</update>
+	
+	<delete id="deleteClient_Data" parameterType="String">
+	    DELETE FROM client_info
+	    WHERE firebase_token = #{firebase_token}
+	</delete>
+</mapper>
