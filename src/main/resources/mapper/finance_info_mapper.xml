@@ -9,6 +9,12 @@
 		LIMIT 100
 	</select>
 	
+	<select id = "Finance_InfoOneData"  resultType="com.jurini.finance_info.vo.Finance_InfoVO"  parameterType="String">		
+		SELECT *
+		FROM finance_info
+		WHERE symbol = #{symbol}
+	</select>
+	
 	<select id = "Payment_Alarm_FinanceList"  resultType="java.lang.String"  parameterType="java.lang.String">		
 		SELECT symbol
 		FROM finance_info

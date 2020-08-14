@@ -37,8 +37,8 @@ public class NotiScheduler {
 
 	private static final String SERVER_KEY = "AAAAlleqw9I:APA91bE6D6DbekJ19oCc88flI4Z9kh4Mu3X7sOvUFWrVHYnaSIU25t-UXimeX2COKGQXo4ywdYKG1Yc9__ncGLcAk3xd2aniW0w-fPZmQYP0MqY3XNuTav_Xm61U__3Q2t357sN2aAxk";
 
-	// @Scheduled(cron="0 0 22 * * *") // 미국 시간 오전 9시 = 한국 시간 오후 10시
-	@Scheduled(cron = "*/30 * * * * *") // 테스트 용
+	@Scheduled(cron="0 0 22 * * *") // 미국 시간 오전 9시 = 한국 시간 오후 10시
+	//@Scheduled(cron = "*/30 * * * * *") // 테스트 용
 	public void scheduleRun() {
 		
 		PaymantAlarmThread paymentAlarmThd = new PaymantAlarmThread();
