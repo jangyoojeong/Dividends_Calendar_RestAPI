@@ -25,9 +25,9 @@
 	</delete>
 	
 	<select id = "Push_List"  resultType="String" >		
-		SELECT client_id
-		FROM alarm_info, client_info
-		WHERE alarm_data = #{symbol} and alarm = 1;
+		SELECT firebase_token
+		FROM client_info
+		WHERE alarm = 1 and client_id = (SELECT client_id FROM alarm_info WHERE alarm_data = #{symbol});
 	</select>
 	
 </mapper>
