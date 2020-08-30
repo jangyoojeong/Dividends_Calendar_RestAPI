@@ -18,8 +18,8 @@ public class Client_InfoDAO {
 		return SqlSession.selectList("mybatis.sql.client_info_mapper.Client_InfoList");
 	}
 	
-	public Client_InfoVO Client_InfoData (String firebase_token){
-		return SqlSession.selectOne("mybatis.sql.client_info_mapper.Client_InfoData", firebase_token);
+	public Client_InfoVO Client_InfoData (String client_id){
+		return SqlSession.selectOne("mybatis.sql.client_info_mapper.Client_InfoData", client_id);
 	}
 	
 	public int insertClient_Data(Client_InfoVO client_InfoVO) {
@@ -30,8 +30,8 @@ public class Client_InfoDAO {
 		return SqlSession.update("mybatis.sql.client_info_mapper.updateClient_Data", client_InfoVO);
 	}
 	
-	public int deleteClient_Data(String firebase_token) {
-		return SqlSession.delete("mybatis.sql.client_info_mapper.deleteClient_Data", firebase_token);
+	public int deleteClient_Data(String client_id) {
+		return SqlSession.delete("mybatis.sql.client_info_mapper.deleteClient_Data", client_id);
 	}
 	
 }

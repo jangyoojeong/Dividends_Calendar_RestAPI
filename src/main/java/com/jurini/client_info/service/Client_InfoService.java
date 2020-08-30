@@ -8,11 +8,11 @@ public interface Client_InfoService {
 
 	public List<Client_InfoVO> Client_InfoList ();
 	
-	public Client_InfoVO Client_InfoData (String firebase_token);
+	public Client_InfoVO Client_InfoData (String client_id);
 	
 	public int insertClient_Data(Client_InfoVO client_InfoVO);
 
 	public int updateClient_Data(Client_InfoVO client_InfoVO);
 	
-	public int deleteClient_Data(String firebase_token);
+	public int deleteClient_Data(String client_id);
 }

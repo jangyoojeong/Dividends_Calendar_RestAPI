@@ -21,9 +21,9 @@ public class Client_InfoServiceImpl implements Client_InfoService {
 	}
 	
 	@Override
-	public Client_InfoVO Client_InfoData(String firebase_token) {
+	public Client_InfoVO Client_InfoData(String client_id) {
 		// TODO Auto-generated method stub
-		return client_InfoDAO.Client_InfoData(firebase_token);
+		return client_InfoDAO.Client_InfoData(client_id);
 	}
 
 	@Override
@@ -39,9 +39,9 @@ public class Client_InfoServiceImpl implements Client_InfoService {
 	}
 
 	@Override
-	public int deleteClient_Data(String firebase_token) {
+	public int deleteClient_Data(String client_id) {
 		// TODO Auto-generated method stub
-		return client_InfoDAO.deleteClient_Data(firebase_token);
+		return client_InfoDAO.deleteClient_Data(client_id);
 	}
 
 }

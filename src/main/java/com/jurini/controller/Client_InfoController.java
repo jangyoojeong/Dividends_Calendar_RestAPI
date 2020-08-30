@@ -28,9 +28,9 @@ public class Client_InfoController {
     }
     
     @RequestMapping(value ="clientInfoData.do" , method = RequestMethod.POST)
-    public @ResponseBody Client_InfoVO clientInfoData(@RequestParam(value="firebase_token") String firebase_token) throws ClassNotFoundException, SQLException{
+    public @ResponseBody Client_InfoVO clientInfoData(@RequestParam(value="client_id") String client_id) throws ClassNotFoundException, SQLException{
           
-          return client_infoService.Client_InfoData(firebase_token);
+          return client_infoService.Client_InfoData(client_id);
     }
     
     @RequestMapping(value ="insertClientData.do" , method = RequestMethod.POST)
@@ -46,8 +46,8 @@ public class Client_InfoController {
     }
     
     @RequestMapping(value ="deleteClientData.do" , method = RequestMethod.POST)
-    public void deleteClientData(@RequestParam(value="firebase_token") String firebase_token) throws ClassNotFoundException, SQLException{
+    public void deleteClientData(@RequestParam(value="client_id") String client_id) throws ClassNotFoundException, SQLException{
           
-    	client_infoService.deleteClient_Data(firebase_token);
+    	client_infoService.deleteClient_Data(client_id);
     }
 }

@@ -9,18 +9,23 @@
 	</select>
 	
 	<insert id="insertClient_Data" parameterType="com.jurini.client_info.vo.Client_InfoVO">
-	    INSERT INTO client_info (firebase_token, alarm)
-	    VALUES (#{firebase_token}, #{alarm})
+	    INSERT INTO client_info (client_id, firebase_token)
+	    VALUES (#{client_id}, #{firebase_token})
 	</insert>
 	
 	<update id="updateClient_Data" parameterType="com.jurini.client_info.vo.Client_InfoVO">
 	    UPDATE client_info
-	    SET  alarm = #{alarm}
-	    WHERE firebase_token = #{firebase_token}
+	    SET  alarm = #{alarm},
+	    have_dividends_alarm = #{have_dividends_alarm},
+	    like_dividends_alarm = #{like_dividends_alarm},
+	    have_payment_alarm = #{have_payment_alarm},
+	    like_payment_alarm = #{like_payment_alarm},
+	    monthly_alarm = #{monthly_alarm}
+	    WHERE client_id = #{client_id}
 	</update>
 	
 	<delete id="deleteClient_Data" parameterType="String">
 	    DELETE FROM client_info
-	    WHERE firebase_token = #{firebase_token}
+	    WHERE client_id = #{client_id}
 	</delete>
 </mapper>
