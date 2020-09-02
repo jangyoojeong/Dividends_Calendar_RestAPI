@@ -34,26 +34,42 @@ public class NotiScheduler {
 
 	@Resource(name = "Finance_InfoService")
 	private Finance_InfoService finance_InfoService;
+	
+	private static final int[] pasts = {0, 3, 7};
 
 	private static final String SERVER_KEY = "AAAAlleqw9I:APA91bE6D6DbekJ19oCc88flI4Z9kh4Mu3X7sOvUFWrVHYnaSIU25t-UXimeX2COKGQXo4ywdYKG1Yc9__ncGLcAk3xd2aniW0w-fPZmQYP0MqY3XNuTav_Xm61U__3Q2t357sN2aAxk";
 
-	@Scheduled(cron="0 0 22 * * *") // 미국 시간 오전 9시 = 한국 시간 오후 10시
+	@Scheduled(cron="0 0 13 * * *") // 미국 워싱턴 DC 기준 9시 -> UTC(현재 서버 Timezone) 시간으로 오후 1시 
 	//@Scheduled(cron = "*/30 * * * * *") // 테스트 용
-	public void scheduleRun() {
+	public void scheduleDailyRun() {
 		
-		PaymantAlarmThread paymentAlarmThd = new PaymantAlarmThread();
-		DividendsAlarmThread dividendsmentAlarmThd = new DividendsAlarmThread();
+		for(int past : pasts) {
+			PaymantAlarmThread paymentAlarmThd = new PaymantAlarmThread(past);
+			DividendsAlarmThread dividendsmentAlarmThd = new DividendsAlarmThread(past);
+			
+			Thread paymentAlarm = new Thread(paymentAlarmThd);
+			Thread dividendsAlarm = new Thread(dividendsmentAlarmThd);
+			
+			paymentAlarm.start();
+			dividendsAlarm.start();
+		}
 		
-		Thread paymentAlarm = new Thread(paymentAlarmThd);
-		Thread dividendsAlarm = new Thread(dividendsmentAlarmThd);
-		
-		paymentAlarm.start();
-		dividendsAlarm.start();
-		
+	}
+	
+	@Scheduled(cron="0 0 13 1 * *") // 매월 알림
+	public void scheduleMonthlyRun() {
+		//TODO 매월 알림 내용 작성
+	
 	}
 	
 	// 지불일 알림
 	public class PaymantAlarmThread implements Runnable{
+		
+		private int past;
+		
+		public PaymantAlarmThread(int past) {
+			this.past = past;
+		}
 
 		@Override
 		public void run() {
@@ -62,15 +78,19 @@ public class NotiScheduler {
 			BufferedReader br = null;
 			
 			try {
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(new Date());
+				cal.add(Calendar.DATE, past);
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-				String date = dateFormat.format(new Date());
+				String date = dateFormat.format(cal.getTime());
 				List<String> pushSymbols = (List<String>)finance_InfoService.Payment_Alarm_FinanceList(date);
 				if (pushSymbols.isEmpty()) {
 					return;
 				}
 
 				for (String symbol : pushSymbols) {
-					List<String> pushList = alarm_InfoService.Push_List(symbol);
+					List<String> pushList = alarm_InfoService.havePaymentPush_List(symbol);
+					pushList.addAll( alarm_InfoService.likePaymentPush_List(symbol));
 
 					if (pushList.isEmpty()) {
 						continue;
@@ -98,8 +118,12 @@ public class NotiScheduler {
 					// jsonData.put("to",
 					// "fhXZ0WW5RhSnmXtXMgL_vx:APA91bEonEcMCplCLMJOiJ_hS0GTQ8sLLKqp-MHwkm1oo0FM9ix7NXJJONLTa38ne7xUQ_D-lIwxcIucqxZnBxGyMFhdDbG5x-mQgJx6NuH7we8quVz65Qbo89mOxCg-uFtXc9KOlc4K");
 					jsonData.put("priority", "high");
-					notiData.put("title", "주린이");
-					notiData.put("body", symbol + " 지급일입니다. 확인하세요.");
+					notiData.put("title", "주달");
+					if(past == 0) {
+						notiData.put("body", symbol + " 지급일입니다. 확인하세요.");
+					}else {
+						notiData.put("body", symbol + " 지급일 " + past + "일 전입니다. 확인하세요.");
+					}
 					jsonData.put("notification", notiData);
 
 					os = conn.getOutputStream();
@@ -151,8 +175,14 @@ public class NotiScheduler {
 		}
 	}
 	
-	// 배당일 3일전 알림
+	// 배당일 알림
 		public class DividendsAlarmThread implements Runnable{
+
+			private int past;
+			
+			public DividendsAlarmThread(int past) {
+				this.past = past;
+			}
 
 			@Override
 			public void run() {
@@ -163,7 +193,7 @@ public class NotiScheduler {
 				try {
 					Calendar cal = Calendar.getInstance();
 					cal.setTime(new Date());
-					cal.add(Calendar.DATE, 4);
+					cal.add(Calendar.DATE, past);
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					String date = dateFormat.format(cal.getTime());
 					List<String> pushSymbols = (List<String>)finance_InfoService.Dividends_Alarm_FinanceList(date);
@@ -172,7 +202,8 @@ public class NotiScheduler {
 					}
 
 					for (String symbol : pushSymbols) {
-						List<String> pushList = alarm_InfoService.Push_List(symbol);
+						List<String> pushList = alarm_InfoService.haveDividendsPush_List(symbol);
+						pushList.addAll(pushList = alarm_InfoService.likeDividendsPush_List(symbol));
 
 						if (pushList.isEmpty()) {
 							continue;
@@ -200,8 +231,12 @@ public class NotiScheduler {
 						// jsonData.put("to",
 						// "fhXZ0WW5RhSnmXtXMgL_vx:APA91bEonEcMCplCLMJOiJ_hS0GTQ8sLLKqp-MHwkm1oo0FM9ix7NXJJONLTa38ne7xUQ_D-lIwxcIucqxZnBxGyMFhdDbG5x-mQgJx6NuH7we8quVz65Qbo89mOxCg-uFtXc9KOlc4K");
 						jsonData.put("priority", "high");
-						notiData.put("title", "주린이");
-						notiData.put("body", symbol + " 배당일 3일전입니다. 확인하세요.");
+						notiData.put("title", "주달");
+						if(past == 0) {
+							notiData.put("body", symbol + " 배당일 "+ past + "일 전입니다. 확인하세요.");
+						}else {
+							notiData.put("body", symbol + " 배당일입니다. 확인하세요.");
+						}
 						jsonData.put("notification", notiData);
 
 						os = conn.getOutputStream();

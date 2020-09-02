@@ -31,7 +31,23 @@ public class Alarm_InfoDAO {
 		return SqlSession.delete("mybatis.sql.alarm_info_mapper.deleteAlarm_Data", alarm_InfoVO);
 	}
 	
-	public List<String> Push_List(String symbol){
-		return SqlSession.selectList("mybatis.sql.alarm_info_mapper.Push_List", symbol);
+	public List<String> monthlyPush_List(String symbol){
+		return SqlSession.selectList("mybatis.sql.alarm_info_mapper.monthlyPush_List", symbol);
+	}
+	
+	public List<String> havePaymentPush_List(String symbol){
+		return SqlSession.selectList("mybatis.sql.alarm_info_mapper.havePaymentPush_List", symbol);
+	}
+	
+	public List<String> haveDividendsPush_List(String symbol){
+		return SqlSession.selectList("mybatis.sql.alarm_info_mapper.haveDividendsPush_List", symbol);
+	}
+	
+	public List<String> likePaymentPush_List(String symbol){
+		return SqlSession.selectList("mybatis.sql.alarm_info_mapper.likePaymentPush_List", symbol);
+	}
+	
+	public List<String> likeDividendsPush_List(String symbol){
+		return SqlSession.selectList("mybatis.sql.alarm_info_mapper.likeDividendsPush_List", symbol);
 	}
 }

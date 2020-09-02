@@ -39,9 +39,33 @@ public class Alarm_InfoServiceImpl implements Alarm_InfoService {
 	}
 
 	@Override
-	public List<String> Push_List(String symbol) {
+	public List<String> monthlyPush_List(String symbol) {
 		// TODO Auto-generated method stub
-		return alarm_InfoDAO.Push_List(symbol);
+		return alarm_InfoDAO.monthlyPush_List(symbol);
+	}
+
+	@Override
+	public List<String> havePaymentPush_List(String symbol) {
+		// TODO Auto-generated method stub
+		return alarm_InfoDAO.havePaymentPush_List(symbol);
+	}
+
+	@Override
+	public List<String> haveDividendsPush_List(String symbol) {
+		// TODO Auto-generated method stub
+		return alarm_InfoDAO.haveDividendsPush_List(symbol);
+	}
+
+	@Override
+	public List<String> likePaymentPush_List(String symbol) {
+		// TODO Auto-generated method stub
+		return alarm_InfoDAO.likePaymentPush_List(symbol);
+	}
+
+	@Override
+	public List<String> likeDividendsPush_List(String symbol) {
+		// TODO Auto-generated method stub
+		return alarm_InfoDAO.likeDividendsPush_List(symbol);
 	}
 
 }

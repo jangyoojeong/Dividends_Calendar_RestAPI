@@ -24,10 +24,34 @@
 	    WHERE client_id = #{client_id} and alarm_data = #{alarm_data}
 	</delete>
 	
-	<select id = "Push_List"  resultType="String" >		
+	<select id = "monthlyPush_List"  resultType="String" >		
 		SELECT firebase_token
 		FROM client_info
-		WHERE alarm = 1 and client_id = (SELECT client_id FROM alarm_info WHERE alarm_data = #{symbol});
+		WHERE alarm = 1 and monthly_alarm = 1 and client_id = (SELECT client_id FROM alarm_info WHERE alarm_data = #{symbol});
+	</select>
+	
+	<select id = "havePaymentPush_List"  resultType="String" >		
+		SELECT firebase_token
+		FROM client_info
+		WHERE alarm = 1 and have_payment_alarm = 1 and client_id = (SELECT client_id FROM alarm_info WHERE alarm_data = #{symbol});
+	</select>
+	
+	<select id = "haveDividendsPush_List"  resultType="String" >		
+		SELECT firebase_token
+		FROM client_info
+		WHERE alarm = 1 and have_dividends_alarm = 1 and client_id = (SELECT client_id FROM alarm_info WHERE alarm_data = #{symbol});
+	</select>
+	
+	<select id = "likePaymentPush_List"  resultType="String" >		
+		SELECT firebase_token
+		FROM client_info
+		WHERE alarm = 1 and like_payment_alarm = 1 and client_id = (SELECT client_id FROM alarm_info WHERE alarm_data = #{symbol});
+	</select>
+	
+	<select id = "haveDividendsPush_List"  resultType="String" >		
+		SELECT firebase_token
+		FROM client_info
+		WHERE alarm = 1 and like_dividends_alarm = 1 and client_id = (SELECT client_id FROM alarm_info WHERE alarm_data = #{symbol});
 	</select>
 	
 </mapper>

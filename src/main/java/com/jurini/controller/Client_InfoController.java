@@ -40,9 +40,9 @@ public class Client_InfoController {
     }
     
     @RequestMapping(value ="updateClientData.do" , method = RequestMethod.POST)
-    public void updateClientData(@RequestBody Client_InfoVO client_InfoVO) throws ClassNotFoundException, SQLException{
+    public @ResponseBody int updateClientData(@RequestBody Client_InfoVO client_InfoVO) throws ClassNotFoundException, SQLException{
           
-    	client_infoService.updateClient_Data(client_InfoVO);
+    	return client_infoService.updateClient_Data(client_InfoVO);
     }
     
     @RequestMapping(value ="deleteClientData.do" , method = RequestMethod.POST)

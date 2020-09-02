@@ -8,6 +8,12 @@
 		FROM client_info
 	</select>
 	
+	<select id = "Client_InfoData"  resultType="com.jurini.client_info.vo.Client_InfoVO"  parameterType="String">		
+		SELECT *
+		FROM client_info
+		WHERE client_id = #{client_id}
+	</select>
+	
 	<insert id="insertClient_Data" parameterType="com.jurini.client_info.vo.Client_InfoVO">
 	    INSERT INTO client_info (client_id, firebase_token)
 	    VALUES (#{client_id}, #{firebase_token})
