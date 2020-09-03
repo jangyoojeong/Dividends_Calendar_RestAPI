@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jurini.alarm_info.service.Alarm_InfoService;
@@ -21,26 +22,26 @@ public class Alarm_InfoController {
     private Alarm_InfoService alarm_infoService;
     
     @RequestMapping(value ="alarmInfoList.do" , method = RequestMethod.POST)
-    public @ResponseBody List<Alarm_InfoVO> alarmInfoList() throws ClassNotFoundException, SQLException{
+    public @ResponseBody List<Alarm_InfoVO> alarmInfoList(@RequestParam(value="client_id") String client_id) throws ClassNotFoundException, SQLException{
           
-          return alarm_infoService.Alarm_InfoList();
+          return alarm_infoService.Alarm_InfoList(client_id);
     }
     
     @RequestMapping(value ="insertAlarmData.do" , method = RequestMethod.POST)
-    public void insertAlarmData(@RequestBody Alarm_InfoVO alarm_InfoVO) throws ClassNotFoundException, SQLException{
+    public @ResponseBody int  insertAlarmData(@RequestBody Alarm_InfoVO alarm_InfoVO) throws ClassNotFoundException, SQLException{
           
-    	alarm_infoService.insertAlarm_Data(alarm_InfoVO);
+    	return alarm_infoService.insertAlarm_Data(alarm_InfoVO);
     }
     
     @RequestMapping(value ="updateAlarmData.do" , method = RequestMethod.POST)
-    public void updateAlarmData(@RequestBody Alarm_InfoVO alarm_InfoVO) throws ClassNotFoundException, SQLException{
+    public @ResponseBody int  updateAlarmData(@RequestBody Alarm_InfoVO alarm_InfoVO) throws ClassNotFoundException, SQLException{
           
-    	alarm_infoService.updateAlarm_Data(alarm_InfoVO);
+    	return alarm_infoService.updateAlarm_Data(alarm_InfoVO);
     }
     
     @RequestMapping(value ="deleteAlarmData.do" , method = RequestMethod.POST)
-    public void deleteAlarmData(@RequestBody Alarm_InfoVO alarm_InfoVO) throws ClassNotFoundException, SQLException{
+    public @ResponseBody int  deleteAlarmData(@RequestBody Alarm_InfoVO alarm_InfoVO) throws ClassNotFoundException, SQLException{
           
-    	alarm_infoService.deleteAlarm_Data(alarm_InfoVO);
+    	return alarm_infoService.deleteAlarm_Data(alarm_InfoVO);
     }
 }

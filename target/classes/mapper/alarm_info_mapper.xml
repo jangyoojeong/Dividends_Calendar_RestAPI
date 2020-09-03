@@ -3,19 +3,27 @@
 
 <mapper namespace="mybatis.sql.alarm_info_mapper">
 
-    <select id = "Alarm_InfoList"  resultType="com.jurini.alarm_info.vo.Alarm_InfoVO" >		
+    <select id = "Alarm_InfoList"  resultType="com.jurini.alarm_info.vo.Alarm_InfoVO"  parameterType="String">		
 		SELECT *
 		FROM alarm_info
+		WHERE client_id = #{client_id}
 	</select>
 	
 	<insert id="insertAlarm_Data" parameterType="com.jurini.alarm_info.vo.Alarm_InfoVO">
-	    INSERT INTO alarm_info (client_id, alarm_data, have_dividends)
-	    VALUES (#{client_id}, #{alarm_data}, #{have_dividends})
+	    INSERT INTO alarm_info (client_id, alarm_data, have_dividends, volume)
+	    VALUES (#{client_id}, #{alarm_data}, #{have_dividends}, #{volume})
 	</insert>
 	
 	<update id="updateAlarm_Data" parameterType="com.jurini.alarm_info.vo.Alarm_InfoVO">
 	    UPDATE alarm_info
-	    SET  have_dividends = #{have_dividends}
+	    <trim prefix="SET" suffixOverrides=",">
+		    <if test="have_dividends != null">
+	    		have_dividends = #{have_dividends},
+	  		</if>
+	  		<if test="volume != null">
+	    		volume = #{volume},
+	  		</if>
+  		</trim>
 	    WHERE client_id = #{client_id} and alarm_data = #{alarm_data}
 	</update>
 	
@@ -48,7 +56,7 @@
 		WHERE alarm = 1 and like_payment_alarm = 1 and client_id = (SELECT client_id FROM alarm_info WHERE alarm_data = #{symbol});
 	</select>
 	
-	<select id = "haveDividendsPush_List"  resultType="String" >		
+	<select id = "likeDividendsPush_List"  resultType="String" >		
 		SELECT firebase_token
 		FROM client_info
 		WHERE alarm = 1 and like_dividends_alarm = 1 and client_id = (SELECT client_id FROM alarm_info WHERE alarm_data = #{symbol});

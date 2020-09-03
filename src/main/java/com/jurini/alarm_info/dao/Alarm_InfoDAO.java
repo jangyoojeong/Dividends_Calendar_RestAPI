@@ -15,8 +15,8 @@ public class Alarm_InfoDAO {
 	@Autowired
 	private SqlSession SqlSession;
 	
-	public List<Alarm_InfoVO> Alarm_InfoList (){
-		return SqlSession.selectList("mybatis.sql.alarm_info_mapper.Alarm_InfoList");
+	public List<Alarm_InfoVO> Alarm_InfoList (String client_id){
+		return SqlSession.selectList("mybatis.sql.alarm_info_mapper.Alarm_InfoList", client_id);
 	}
 	
 	public int insertAlarm_Data(Alarm_InfoVO alarm_InfoVO) {

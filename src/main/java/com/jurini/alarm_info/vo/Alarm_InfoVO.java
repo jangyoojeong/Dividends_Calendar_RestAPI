@@ -5,7 +5,8 @@ public class Alarm_InfoVO {
 	
 	private String client_id;
 	private String alarm_data;
-	private int alarm_id;
+	private double volume;
+	private int have_dividends;
 	
 	public String getClient_id() {
 		return client_id;
@@ -19,15 +20,22 @@ public class Alarm_InfoVO {
 	public void setAlarm_data(String alarm_data) {
 		this.alarm_data = alarm_data;
 	}
-	public int getAlarm_id() {
-		return alarm_id;
+	public double getVolume() {
+		return volume;
 	}
-	public void setAlarm_id(int alarm_id) {
-		this.alarm_id = alarm_id;
+	public void setVolume(double volume) {
+		this.volume = volume;
+	}
+	public int getHave_dividends() {
+		return have_dividends;
+	}
+	public void setHave_dividends(int have_dividends) {
+		this.have_dividends = have_dividends;
 	}
 	@Override
 	public String toString() {
-		return "Alarm_InfoVO [client_id=" + client_id + ", alarm_data=" + alarm_data + ", alarm_id=" + alarm_id + "]";
+		return "Alarm_InfoVO [client_id=" + client_id + ", alarm_data=" + alarm_data
+				+ ", volume=" + volume + ", have_dividends=" + have_dividends + "]";
 	}
-	
+
 }

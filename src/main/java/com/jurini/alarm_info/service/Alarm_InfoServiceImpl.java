@@ -15,9 +15,9 @@ public class Alarm_InfoServiceImpl implements Alarm_InfoService {
     private Alarm_InfoDAO alarm_InfoDAO;
 	
 	@Override
-	public List<Alarm_InfoVO> Alarm_InfoList() {
+	public List<Alarm_InfoVO> Alarm_InfoList(String client_id) {
 		// TODO Auto-generated method stub
-		return alarm_InfoDAO.Alarm_InfoList();
+		return alarm_InfoDAO.Alarm_InfoList(client_id);
 	}
 
 	@Override

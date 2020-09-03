@@ -21,12 +21,29 @@
 	
 	<update id="updateClient_Data" parameterType="com.jurini.client_info.vo.Client_InfoVO">
 	    UPDATE client_info
-	    SET  alarm = #{alarm},
-	    have_dividends_alarm = #{have_dividends_alarm},
-	    like_dividends_alarm = #{like_dividends_alarm},
-	    have_payment_alarm = #{have_payment_alarm},
-	    like_payment_alarm = #{like_payment_alarm},
-	    monthly_alarm = #{monthly_alarm}
+	    <trim prefix="SET" suffixOverrides=",">
+	        <if test="firebase_token != null">
+	    		firebase_token = #{firebase_token},
+	  		</if>
+		    <if test="alarm != null">
+	    		alarm = #{alarm},
+	  		</if>
+	  		<if test="have_dividends_alarme != null">
+	    		have_dividends_alarm = #{have_dividends_alarm},
+	  		</if>
+	  		<if test="like_dividends_alarm != null">
+	    		like_dividends_alarm = #{like_dividends_alarm},
+	  		</if>
+	  		<if test="have_payment_alarm != null">
+	    		have_payment_alarm = #{have_payment_alarm},
+	  		</if>
+	  		<if test="like_payment_alarm != null">
+	    		like_payment_alarm = #{like_payment_alarm},
+	  		</if>
+	  		<if test="monthly_alarm != null">
+	    		monthly_alarm = #{monthly_alarm},
+	  		</if>
+  		</trim>
 	    WHERE client_id = #{client_id}
 	</update>
 	

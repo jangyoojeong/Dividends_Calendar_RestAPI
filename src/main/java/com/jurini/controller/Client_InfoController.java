@@ -34,9 +34,9 @@ public class Client_InfoController {
     }
     
     @RequestMapping(value ="insertClientData.do" , method = RequestMethod.POST)
-    public void insertClientData(@RequestBody Client_InfoVO client_InfoVO) throws ClassNotFoundException, SQLException{
+    public @ResponseBody int insertClientData(@RequestBody Client_InfoVO client_InfoVO) throws ClassNotFoundException, SQLException{
           
-    	client_infoService.insertClient_Data(client_InfoVO);
+    	return client_infoService.insertClient_Data(client_InfoVO);
     }
     
     @RequestMapping(value ="updateClientData.do" , method = RequestMethod.POST)
@@ -46,8 +46,8 @@ public class Client_InfoController {
     }
     
     @RequestMapping(value ="deleteClientData.do" , method = RequestMethod.POST)
-    public void deleteClientData(@RequestParam(value="client_id") String client_id) throws ClassNotFoundException, SQLException{
+    public @ResponseBody int deleteClientData(@RequestParam(value="client_id") String client_id) throws ClassNotFoundException, SQLException{
           
-    	client_infoService.deleteClient_Data(client_id);
+    	return client_infoService.deleteClient_Data(client_id);
     }
 }
