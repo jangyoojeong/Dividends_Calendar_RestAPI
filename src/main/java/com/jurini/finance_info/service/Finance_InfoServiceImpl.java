@@ -40,5 +40,23 @@ public class Finance_InfoServiceImpl implements Finance_InfoService{
 		// TODO Auto-generated method stub
 		return Finance_InfoDAO.Dividends_Alarm_FinanceList(date);
 	}
+
+	@Override
+	public List<Finance_InfoVO> Dividends_King_List() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return Finance_InfoDAO.Dividends_King_List();
+	}
+
+	@Override
+	public List<Finance_InfoVO> Dividends_Aristocrat_List() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return Finance_InfoDAO.Dividends_Aristocrat_List();
+	}
+
+	@Override
+	public List<Finance_InfoVO> Dividends_Monthly_List(String date) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return Finance_InfoDAO.Dividends_Monthly_List(date);
+	}
 	
 }

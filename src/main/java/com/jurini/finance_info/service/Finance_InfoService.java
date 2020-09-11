@@ -14,4 +14,10 @@ public interface Finance_InfoService {
 	public List<String> Payment_Alarm_FinanceList(String date) throws ClassNotFoundException, SQLException;
 	
 	public List<String> Dividends_Alarm_FinanceList(String date) throws ClassNotFoundException, SQLException;
+	
+	public List<Finance_InfoVO> Dividends_King_List () throws ClassNotFoundException, SQLException;
+	
+	public List<Finance_InfoVO> Dividends_Aristocrat_List () throws ClassNotFoundException, SQLException;
+	
+	public List<Finance_InfoVO> Dividends_Monthly_List (String date) throws ClassNotFoundException, SQLException;
 }

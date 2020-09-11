@@ -28,7 +28,7 @@
 		    <if test="alarm != null">
 	    		alarm = #{alarm},
 	  		</if>
-	  		<if test="have_dividends_alarme != null">
+	  		<if test="have_dividends_alarm != null">
 	    		have_dividends_alarm = #{have_dividends_alarm},
 	  		</if>
 	  		<if test="like_dividends_alarm != null">

@@ -15,7 +15,7 @@ import com.jurini.restful.vo.Dividend_HistoryVO;
 public class RestfulController {
 
 	
-	//¹è´ç ÀÌ·Â °¡Á®¿À±â
+	//ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value ="/getDividendHistory", method = RequestMethod.GET)    
     public Dividend_HistoryVO responseDividendHistory(HttpServletRequest req) {    
 		
@@ -33,7 +33,7 @@ public class RestfulController {
 
 	}
 	
-	//Á¾°¡ ÀÌ·Â °¡Á®¿À±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value ="/getClosePriceHistory", method = RequestMethod.GET)    
     public Close_Price_HistoryVO responseClosePriceHistory(HttpServletRequest req) {    
 		
@@ -47,7 +47,6 @@ public class RestfulController {
 		return vo;                               
 
 	}
-
 
 
 }

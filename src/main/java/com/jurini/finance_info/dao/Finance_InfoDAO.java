@@ -30,4 +30,16 @@ public class Finance_InfoDAO {
 	public List<String> Dividends_Alarm_FinanceList(String date) {
 		return SqlSession.selectList("mybatis.sql.finance_info_mapper.Dividends_Alarm_FinanceList", date);
 	}
+	
+	public List<Finance_InfoVO> Dividends_King_List (){
+		return SqlSession.selectList("mybatis.sql.finance_info_mapper.Dividends_King_List");
+	}
+	
+	public List<Finance_InfoVO> Dividends_Aristocrat_List (){
+		return SqlSession.selectList("mybatis.sql.finance_info_mapper.Dividends_Aristocrat_List");
+	}
+	
+	public List<Finance_InfoVO> Dividends_Monthly_List (String date){
+		return SqlSession.selectList("mybatis.sql.finance_info_mapper.Dividends_Monthly_List", date);
+	}
 }

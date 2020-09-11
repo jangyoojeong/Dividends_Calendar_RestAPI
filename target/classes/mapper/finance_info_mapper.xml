@@ -26,5 +26,24 @@
 		FROM finance_info
 		WHERE dividends_date = #{date}
 	</select>
+	
+	<select id = "Dividends_King_List"  resultType="com.jurini.finance_info.vo.Finance_InfoVO">		
+		SELECT *
+		FROM finance_info
+		WHERE hot_dividends = 1
+	</select>
+	
+	<select id = "Dividends_Aristocrat_List"  resultType="com.jurini.finance_info.vo.Finance_InfoVO">		
+		SELECT *
+		FROM finance_info
+		WHERE hot_dividends = 2
+	</select>
+	
+	<select id = "Dividends_Monthly_List"  resultType="com.jurini.finance_info.vo.Finance_InfoVO"  parameterType="java.lang.String">		
+		SELECT *
+		FROM finance_info
+		WHERE dividends_date like CONCAT(#{date},'%')
+	</select>
+	
 </mapper>
  		
